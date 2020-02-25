@@ -22,4 +22,10 @@ app.post("/events", jsonParser, (req, res) => {
   res.sendStatus(201);
 });
 
+app.delete("/event/:date", (req, res) => {
+  const newEvents = events.events.filter(e => e.date !== req.params.date);
+  events.events = newEvents;
+  res.json(events);
+});
+
 module.exports = app;

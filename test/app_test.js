@@ -48,3 +48,16 @@ describe("POST /events", () => {
       .expect(400, done);
   });
 });
+
+describe("DELETE /event/:date", () => {
+  it("deletes event from given date", done => {
+    request(app)
+      .get("/events")
+      .then(response => {
+        const events = response.body.events;
+        request(app)
+          .delete("/event/" + events[0].date)
+          .expect(200, { events: events.slice(1, events.length) }, done);
+      }, done);
+  });
+});
