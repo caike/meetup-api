@@ -28,4 +28,6 @@ app.delete("/event/:date", (req, res) => {
   res.json(events);
 });
 
+app.get("/index.html", (req, res) => res.sendStatus(200));
+
 module.exports = app;
