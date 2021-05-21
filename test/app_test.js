@@ -3,6 +3,21 @@ const app = require("../app");
 const fs = require("fs");
 const data = JSON.parse(fs.readFileSync("events.json"));
 
+describe("GET /", () => {
+  it("responds with json", done => {
+    request(app)
+      .get("/events")
+      .expect("Content-Type", /json/)
+      .expect(200, done);
+  });
+
+  it("responds with list of events", done => {
+    request(app)
+      .get("/events")
+      .expect(200, data, done);
+  });
+});
+
 describe("GET /events", () => {
   it("responds with json", done => {
     request(app)

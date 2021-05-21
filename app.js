@@ -6,6 +6,8 @@ app.use(cors());
 const fs = require("fs");
 const events = JSON.parse(fs.readFileSync("events.json"));
 
+app.get("/", (req, res) => res.json(events));
+
 app.get("/events", (req, res) => res.json(events));
 
 const bodyParser = require("body-parser");
